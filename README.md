@@ -1,0 +1,2 @@
+# PrestaShop
+Test automation architecture
