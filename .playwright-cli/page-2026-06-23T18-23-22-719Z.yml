@@ -1,0 +1,156 @@
+- main [ref=e2]:
+  - generic [ref=e3]:
+    - navigation [ref=e4]:
+      - generic [ref=e6]:
+        - generic:
+          - link "Kontaktujte nás" [ref=e10] [cursor=pointer]:
+            - /url: http://37.27.17.198:8084/cs/napiste-nam
+          - generic [ref=e11]:
+            - button "Rozevírací nabídka jazyka" [ref=e15]:
+              - text: Čeština
+              - generic [ref=e16] [cursor=pointer]: 
+            - generic [ref=e18]:
+              - text: "Měna:"
+              - button "Rozevírací nabídka měny" [ref=e19]:
+                - text: CZK Kč
+                - generic [ref=e20] [cursor=pointer]: 
+            - link " Přihlásit se" [ref=e23] [cursor=pointer]:
+              - /url: http://37.27.17.198:8084/cs/přihlásit?back=http%3A%2F%2F37.27.17.198%3A8084%2Fcs%2Fp%25C5%2599ihl%25C3%25A1sit%3Fback%3Dhttp%253A%252F%252F37.27.17.198%253A8084%252Fcs%252F
+              - generic [ref=e24]: 
+              - text: Přihlásit se
+            - generic [ref=e27]:
+              - generic [ref=e28]: shopping_cart
+              - text: Košík (0)
+    - generic [ref=e31]:
+      - link "PrestaShop" [ref=e33] [cursor=pointer]:
+        - /url: http://37.27.17.198:8084/cs/
+        - img "PrestaShop" [ref=e34]
+      - generic [ref=e35]:
+        - list [ref=e37]:
+          - listitem [ref=e38]:
+            - link "Clothes" [ref=e39] [cursor=pointer]:
+              - /url: http://37.27.17.198:8084/cs/3-clothes
+          - listitem [ref=e40]:
+            - link "Příslušenství" [ref=e41] [cursor=pointer]:
+              - /url: http://37.27.17.198:8084/cs/6-accessories
+          - listitem [ref=e42]:
+            - link "Art" [ref=e43] [cursor=pointer]:
+              - /url: http://37.27.17.198:8084/cs/9-art
+        - generic [ref=e45]:
+          - generic [ref=e46]: search
+          - status [ref=e47]
+          - textbox "Vyhledávání" [ref=e48]:
+            - /placeholder: Hledat v katalogu
+  - generic [ref=e49]:
+    - complementary
+    - generic [ref=e50]:
+      - navigation [ref=e51]:
+        - list [ref=e52]:
+          - listitem [ref=e53]:
+            - link "Domů" [ref=e54] [cursor=pointer]:
+              - /url: http://37.27.17.198:8084/cs/
+            - text: /
+          - listitem [ref=e55]: Přihlaste se ke svému účtu
+      - generic [ref=e58]:
+        - heading "Přihlaste se ke svému účtu" [level=1] [ref=e60]
+        - generic [ref=e61]:
+          - generic [ref=e63]:
+            - generic [ref=e64]:
+              - generic [ref=e65]:
+                - generic [ref=e66]: E-mail
+                - textbox "E-mail" [ref=e68]
+              - generic [ref=e70]:
+                - generic [ref=e71]: Heslo
+                - generic [ref=e73]:
+                  - textbox "Pole pro heslo" [ref=e74]
+                  - button "Ukázat" [ref=e76] [cursor=pointer]
+              - link "Zapomněli jste své heslo?" [ref=e79] [cursor=pointer]:
+                - /url: http://37.27.17.198:8084/cs/obnova-hesla
+            - button "Přihlásit se" [ref=e81] [cursor=pointer]
+          - separator [ref=e82]
+          - link "Nemáte účet? Vytvořte si jej zde" [ref=e84] [cursor=pointer]:
+            - /url: http://37.27.17.198:8084/cs/registrace
+  - generic [ref=e85]:
+    - generic [ref=e87]:
+      - generic [ref=e89]:
+        - paragraph [ref=e90]: Získejte nejnovější novinky a speciální slevy
+        - generic [ref=e93]:
+          - generic [ref=e94]:
+            - button "Odebírat" [ref=e95] [cursor=pointer]
+            - textbox "Získejte nejnovější novinky a speciální slevy" [ref=e97]:
+              - /placeholder: Vaše e-mailová adresa
+          - paragraph [ref=e99]: Odběr novinek můžete kdykoliv zrušit. Pokud to chcete udělat, naše kontaktní informace naleznete v právním oznámení.
+      - generic [ref=e100]:
+        - list
+    - generic [ref=e102]:
+      - generic [ref=e103]:
+        - generic [ref=e105]:
+          - generic [ref=e106]:
+            - paragraph [ref=e107]: Produkty
+            - list [ref=e108]:
+              - listitem [ref=e109]:
+                - link "Slevy" [ref=e110] [cursor=pointer]:
+                  - /url: http://37.27.17.198:8084/cs/slevy
+              - listitem [ref=e111]:
+                - link "Nové produkty" [ref=e112] [cursor=pointer]:
+                  - /url: http://37.27.17.198:8084/cs/novinky
+              - listitem [ref=e113]:
+                - link "Nejprodávanější" [ref=e114] [cursor=pointer]:
+                  - /url: http://37.27.17.198:8084/cs/nejprodavanejsi
+          - generic [ref=e115]:
+            - paragraph [ref=e116]: Naše společnost
+            - list [ref=e117]:
+              - listitem [ref=e118]:
+                - link "Delivery" [ref=e119] [cursor=pointer]:
+                  - /url: http://37.27.17.198:8084/cs/content/1-delivery
+              - listitem [ref=e120]:
+                - link "Legal Notice" [ref=e121] [cursor=pointer]:
+                  - /url: http://37.27.17.198:8084/cs/content/2-legal-notice
+              - listitem [ref=e122]:
+                - link "Terms and conditions of use" [ref=e123] [cursor=pointer]:
+                  - /url: http://37.27.17.198:8084/cs/content/3-terms-and-conditions-of-use
+              - listitem [ref=e124]:
+                - link "About us" [ref=e125] [cursor=pointer]:
+                  - /url: http://37.27.17.198:8084/cs/content/4-about-us
+              - listitem [ref=e126]:
+                - link "Secure payment" [ref=e127] [cursor=pointer]:
+                  - /url: http://37.27.17.198:8084/cs/content/5-secure-payment
+              - listitem [ref=e128]:
+                - link "Kontaktujte nás" [ref=e129] [cursor=pointer]:
+                  - /url: http://37.27.17.198:8084/cs/napiste-nam
+              - listitem [ref=e130]:
+                - link "Mapa stránek" [ref=e131] [cursor=pointer]:
+                  - /url: http://37.27.17.198:8084/cs/mapa stránek
+              - listitem [ref=e132]:
+                - link "Prodejny" [ref=e133] [cursor=pointer]:
+                  - /url: http://37.27.17.198:8084/cs/prodejny
+        - generic [ref=e134]:
+          - paragraph [ref=e135]:
+            - link "Váš účet" [ref=e136] [cursor=pointer]:
+              - /url: http://37.27.17.198:8084/cs/muj-ucet
+          - list [ref=e137]:
+            - listitem [ref=e138]:
+              - link "Sledování objednávky" [ref=e139] [cursor=pointer]:
+                - /url: http://37.27.17.198:8084/cs/sledovani-objednavky-navstevnika
+            - listitem [ref=e140]:
+              - link "Přihlásit se" [ref=e141] [cursor=pointer]:
+                - /url: http://37.27.17.198:8084/cs/muj-ucet
+            - listitem [ref=e142]:
+              - link "Vytvořit účet" [ref=e143] [cursor=pointer]:
+                - /url: http://37.27.17.198:8084/cs/registrace
+            - listitem [ref=e144]:
+              - link "Moje oznámení" [ref=e145] [cursor=pointer]:
+                - /url: //37.27.17.198:8084/cs/module/ps_emailalerts/account
+        - generic [ref=e146]:
+          - paragraph [ref=e147]: Informace o obchodu
+          - generic [ref=e148]:
+            - text: PrestaShop
+            - text: Česko
+            - text: "Napište nám:"
+            - link "demo@prestashop.com" [ref=e149] [cursor=pointer]:
+              - /url: mailto:demo@prestashop.com
+        - generic:
+          - paragraph
+      - paragraph [ref=e152]:
+        - link "© 2026 - Software pro elektronický obchod od PrestaShop™" [ref=e153] [cursor=pointer]:
+          - /url: https://www.prestashop-project.org/

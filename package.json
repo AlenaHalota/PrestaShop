@@ -1,0 +1,31 @@
+{
+  "name": "PrestaShop",
+  "version": "1.0.0",
+  "description": "Test automation architecture",
+  "main": "index.js",
+  "scripts": {
+    "test": "playwright test",
+    "test:unit": "npx playwright test tests/unit --workers=1",
+    "test:smoke": "npx playwright test tests/ui/smoke --project=chromium",
+    "test:regression": "npx playwright test tests/ui/regression --project=chromium"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AlenaHalota/PrestaShop.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AlenaHalota/PrestaShop/issues"
+  },
+  "homepage": "https://github.com/AlenaHalota/PrestaShop#readme",
+  "engines": {
+    "node": ">=18"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.61.0",
+    "@types/node": "^25.9.4",
+    "dotenv": "^16.3.1"
+  }
+}
