@@ -29,8 +29,6 @@ jobs:
       - name: Run smoke tests
         run: npm run test:smoke
         env:
-          PLAYWRIGHT_BASE_URL: ${{ secrets.PLAYWRIGHT_BASE_URL || 'http://37.27.17.198:8084/cs/' }}
-          EMAIL: ${{ secrets.EMAIL }}
           PASSWORD: ${{ secrets.PASSWORD }}
       
       - name: Upload test results
