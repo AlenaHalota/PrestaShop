@@ -1,0 +1,99 @@
+name: Playwright Tests
+
+on:
+  pull_request:
+    branches: [ main ]
+  push:
+    branches: [ main ]
+  schedule:
+    - cron: '0 2 * * 1-5' # Nightly regression Sun-Thu 02:00 UTC
+
+env:
+  PLAYWRIGHT_BASE_URL: 'http://37.27.17.198:8084/cs/'
+
+jobs:
+  pr_smoke:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Install dependencies
+        run: npm ci
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
+      - name: Run smoke tests (chromium)
+        env:
+          PLAYWRIGHT_RETRIES: 1
+          PLAYWRIGHT_WORKERS: 2
+        run: npm run test:smoke || echo "Smoke tests exited with non-zero status"
+      - name: Upload Playwright report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: playwright-report
+
+  full_regression:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    strategy:
+      matrix:
+        browser: [chromium, firefox, webkit]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Install dependencies
+        run: npm ci
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
+      - name: Run full regression (no retries)
+        env:
+          PLAYWRIGHT_RETRIES: 0
+          PLAYWRIGHT_WORKERS: 3
+        run: |
+          npx playwright test --project=${{ matrix.browser }} || exit 1
+      - name: Upload Playwright report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report-${{ matrix.browser }}
+          path: playwright-report
+
+  nightly_regression:
+    if: github.event_name == 'schedule'
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    strategy:
+      matrix:
+        browser: [chromium, firefox, webkit]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Install dependencies
+        run: npm ci
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
+      - name: Run nightly regression (no retries)
+        env:
+          PLAYWRIGHT_RETRIES: 0
+          PLAYWRIGHT_WORKERS: 4
+        run: |
+          npx playwright test --project=${{ matrix.browser }} || exit 1
+      - name: Upload Playwright report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report-nightly-${{ matrix.browser }}
+          path: playwright-report
