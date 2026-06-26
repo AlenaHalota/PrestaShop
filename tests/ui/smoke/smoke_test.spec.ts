@@ -3,7 +3,6 @@ import dotenv from 'dotenv';
 import path from 'path';
 import { HomePage } from '../../pages/HomePage';
 
-// Load environment variables from .env and .env.local files
 dotenv.config({ path: path.resolve(__dirname, '../../.env') });
 dotenv.config({ path: path.resolve(__dirname, '../../.env.local') });
 
@@ -14,10 +13,10 @@ test.describe('Smoke test', () => {
   });
 
   test('login', async ({ page }) => {
+
     const emailAddress = process.env.EMAIL;
     const password = process.env.PASSWORD;
 
-    // Ensure the variables actually exist before trying to use them
     if (!emailAddress) {
       throw new Error('EMAIL environment variable is not defined!');
     }

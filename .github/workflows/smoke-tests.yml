@@ -9,7 +9,8 @@ on:
 jobs:
   smoke-tests:
     runs-on: ubuntu-latest
-    
+    env:
+        PASSWORD: ${{ secrets.PASSWORD }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -28,8 +29,6 @@ jobs:
       
       - name: Run smoke tests
         run: npm run test:smoke
-        env:
-          PASSWORD: ${{ secrets.PASSWORD }}
       
       - name: Upload test results
         if: always()
