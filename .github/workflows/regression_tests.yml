@@ -12,9 +12,12 @@ env:
   PLAYWRIGHT_BASE_URL: 'http://37.27.17.198:8084/cs/'
 
 jobs:
-  pr_smoke:
+  smoke:
+    name: Smoke Test
     if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
+    env:
+      PASSWORD: ${{ secrets.PASSWORD }}
     timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
@@ -39,8 +42,11 @@ jobs:
           path: playwright-report
 
   full_regression:
+    name: Full Regression Test
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
+    env:
+      PASSWORD: ${{ secrets.PASSWORD }}
     timeout-minutes: 60
     strategy:
       matrix:
@@ -69,8 +75,11 @@ jobs:
           path: playwright-report
 
   nightly_regression:
+    name: Nightly Regression Test
     if: github.event_name == 'schedule'
     runs-on: ubuntu-latest
+    env:
+      PASSWORD: ${{ secrets.PASSWORD }}
     timeout-minutes: 120
     strategy:
       matrix:
