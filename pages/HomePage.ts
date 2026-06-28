@@ -24,7 +24,7 @@ export class HomePage {
     this.addToCartButton = page.getByRole('button', {
       name: /add to cart|add to basket|buy now|do košíku|přidat do košíku/i,
     });
-    this.cartLink = page.getByRole('link', { name: /cart|basket|košík|checkout/i }).first();
+    this.cartLink = page.getByRole('link', { name: /Cart|Košík/i }).first();
 
     this.searchInput = page.locator(
       'input[placeholder="Search our catalog"]',
