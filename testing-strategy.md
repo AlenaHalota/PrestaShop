@@ -51,7 +51,6 @@ Important scenarios and their priority/level:
 | Login | 1 | UI | Smoke / every PR | Core functionality |
 | Add product to cart | 1 | UI | Smoke / every PR | Critical purchase flow |
 | Catalog search | 1 | UI | Smoke / every PR | Frequently used functionality |
-| Pay via 3rd-party app | 1 | API | Regression | Payment integration verification (test API required) |
 | Create new account | 1 | UI | Regression | Critical user flow |
 | Cart price calculation | 2 | Unit | Regression | Business logic correctness |
 | Change language | 2 | UI | Regression | Frequently used |

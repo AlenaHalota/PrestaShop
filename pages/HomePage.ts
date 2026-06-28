@@ -27,7 +27,7 @@ export class HomePage {
     this.cartLink = page.getByRole('link', { name: /cart|basket|košík|checkout/i }).first();
 
     this.searchInput = page.locator(
-      'input[type="search"], input[name*="search"], input[placeholder*="search"], input[placeholder*="vyhled"]',
+      'input[placeholder="Search our catalog"]',
     );
   }
 

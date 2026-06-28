@@ -6,7 +6,7 @@
   "scripts": {
     "test": "playwright test",
     "test:unit": "npx playwright test tests/unit --workers=1",
-    "test:smoke": "npx playwright test tests/ui/smoke --project=chromium",
+    "test:smoke": "npx playwright test tests/ui/smoke tests/api/api_smoke --project=chromium",
     "test:regression": "npx playwright test tests/ui/regression --project=chromium"
   },
   "repository": {

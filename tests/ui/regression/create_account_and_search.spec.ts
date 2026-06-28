@@ -1,6 +1,5 @@
 import { test, expect } from '@playwright/test';
 
-// Regression: create account and search
 test.describe('Regression - account and search', () => {
   test('open registration and try to create account', async ({ page }) => {
     await page.goto('/');

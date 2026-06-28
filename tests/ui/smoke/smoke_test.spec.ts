@@ -1,18 +1,13 @@
 import { test, expect } from '@playwright/test';
 import dotenv from 'dotenv';
 import path from 'path';
-import { HomePage } from '../../pages/HomePage';
+import { HomePage } from '../../../pages/HomePage';
 
 dotenv.config({ path: path.resolve(__dirname, '../../.env') });
 dotenv.config({ path: path.resolve(__dirname, '../../.env.local') });
 
 test.describe('Smoke test', () => {
-  test('application is available', async ({ page }) => {
-    const resp = await page.request.get('/');
-    expect(resp.status()).toBe(200);
-  });
-
-  test('login', async ({ page }) => {
+  test('login successful', async ({ page }) => {
 
     const emailAddress = process.env.EMAIL;
     const password = process.env.PASSWORD;
@@ -52,17 +47,7 @@ test.describe('Smoke test', () => {
   });
 
   test('search for product', async ({ page }) => {
-    await page.goto('/');
-
-    const searchInput = page.locator(
-      'input[type="search"], input[name*="search"], input[placeholder*="search"], input[placeholder*="vyhled"]',
-    );
-    if (await searchInput.count() === 0) test.skip(true, 'Search input not found on home page');
-    await expect(searchInput.first()).toBeVisible({ timeout: 5000 });
-    await searchInput.first().fill('shirt');
-    await searchInput.first().press('Enter');
-
-    const results = page.locator('.product, .product-item, .product-list, .search-results');
-    await expect(results.first()).toBeVisible({ timeout: 10000 });
+    const home = new HomePage(page);
+    await home.search('shirt');
   });
 });
