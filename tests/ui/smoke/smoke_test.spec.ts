@@ -24,6 +24,7 @@ test.describe('Smoke test', () => {
   });
 
   test('add first product to cart', async ({ page }) => {
+    const homePage = new HomePage(page);
     await page.goto('/');
 
     const product = page.locator(
@@ -40,10 +41,7 @@ test.describe('Smoke test', () => {
     await expect(addToCartButton.first()).toBeVisible({ timeout: 10000 });
     await addToCartButton.first().click();
 
-    const cartLink = page.getByRole('link', {
-      name: /cart|basket|košík|checkout/i,
-    });
-    await expect(cartLink.first()).toBeVisible({ timeout: 10000 });
+  await expect(homePage.cartLink.first()).toBeVisible({ timeout: 10000 });
   });
 
   test('search for product', async ({ page }) => {
