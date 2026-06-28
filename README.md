@@ -45,3 +45,7 @@ If a test fails in CI, download the trace.zip artifact and open it locally:
 
 Bash
 npx playwright show-trace path/to/trace.zip
+
+# CI/CD pipeline
+Smoke test runs on every PR.
+Regression test runs on every merge to master and scheduled nightly.
