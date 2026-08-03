@@ -38,12 +38,16 @@ jobs:
           PLAYWRIGHT_WORKERS: 3
         run: |
           npx playwright test --project=${{ matrix.browser }} || exit 1
-      - name: Upload Playwright report
+      - name: Upload Playwright artifacts
         if: failure()
         uses: actions/upload-artifact@v4
         with:
-          name: playwright-report-${{ matrix.browser }}
-          path: playwright-report
+          name: playwright-artifacts-${{ matrix.browser }}
+          path: |
+            playwright-report/
+            test-results/
+          if-no-files-found: ignore
+          retention-days: 30
 
   nightly_regression:
     name: Nightly Regression Test
@@ -71,9 +75,13 @@ jobs:
           PLAYWRIGHT_WORKERS: 4
         run: |
           npx playwright test --project=${{ matrix.browser }} || exit 1
-      - name: Upload Playwright report
+      - name: Upload Playwright artifacts
         if: failure()
         uses: actions/upload-artifact@v4
         with:
-          name: playwright-report-nightly-${{ matrix.browser }}
-          path: playwright-report
+          name: playwright-artifacts-nightly-${{ matrix.browser }}
+          path: |
+            playwright-report/
+            test-results/
+          if-no-files-found: ignore
+          retention-days: 30

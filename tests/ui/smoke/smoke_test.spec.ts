@@ -1,16 +1,23 @@
-import { test, expect } from '@playwright/test';
+import { test, expect } from '../../../fixtures';
 import dotenv from 'dotenv';
 import path from 'path';
 import { HomePage } from '../../../pages/HomePage';
+import { addToCart, searchForGoods } from '../../../helpers/catalog';
+import { getRandomGoodsItem } from '../../../config/test-data';
 
 dotenv.config({ path: path.resolve(__dirname, '../../.env') });
 dotenv.config({ path: path.resolve(__dirname, '../../.env.local') });
 
 test.describe('Smoke test', () => {
-  test('login successful', async ({ page }) => {
+  test.beforeEach(async ({}, testInfo) => {
+    testInfo.annotations.push({ type: 'tag', description: 'smoke' });
+    testInfo.annotations.push({ type: 'tag', description: 'ui' });
+    testInfo.annotations.push({ type: 'tag', description: 'prGate' });
+  });
+  test('login successful', async ({ page, testUser }) => {
 
-    const emailAddress = process.env.EMAIL;
-    const password = process.env.PASSWORD;
+    const emailAddress = process.env.EMAIL || testUser.email;
+    const password = process.env.PASSWORD || testUser.password;
 
     if (!emailAddress) {
       throw new Error('EMAIL environment variable is not defined!');
@@ -25,27 +32,12 @@ test.describe('Smoke test', () => {
 
   test('add first product to cart', async ({ page }) => {
     const homePage = new HomePage(page);
-    await page.goto('/');
-
-    const product = page.locator(
-      'article, .product, .product-item, .product-list a, .product-card',
-    ).first();
-    if (await product.count() === 0) test.skip(true, 'No product entry found on home page');
-    await expect(product).toBeVisible({ timeout: 10000 });
-    await product.click();
-
-    const addToCartButton = page.getByRole('button', {
-      name: /add to cart|add to basket|buy now|do košíku|přidat do košíku/i,
-    });
-    if (await addToCartButton.count() === 0) test.skip(true, 'Add to cart button not found on product page');
-    await expect(addToCartButton.first()).toBeVisible({ timeout: 10000 });
-    await addToCartButton.first().click();
-
-  await expect(homePage.cartLink.first()).toBeVisible({ timeout: 10000 });
+    await addToCart(page, 0);
+    await expect(homePage.cartLink.first()).toBeVisible({ timeout: 10000 });
   });
 
   test('search for product', async ({ page }) => {
-    const home = new HomePage(page);
-    await home.search('shirt');
+    const product = getRandomGoodsItem();
+    await searchForGoods(page, product.name);
   });
 });

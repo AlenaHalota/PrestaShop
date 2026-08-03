@@ -1,5 +1,6 @@
 import { defineConfig, devices } from '@playwright/test';
 import path from 'path';
+import { testConfig } from './config';
 
 // Load dotenv if available (optional in environments without node_modules)
 try {
@@ -24,18 +25,22 @@ export default defineConfig({
   /* Fail the build on CI if you accidentally left test.only in the source code. */
   forbidOnly: !!process.env.CI,
   /* Retry and worker configuration can be set via environment variables to match pipeline policies. */
-  retries: typeof process.env.PLAYWRIGHT_RETRIES !== 'undefined' ? Number(process.env.PLAYWRIGHT_RETRIES) : (process.env.CI ? 2 : 0),
+  retries: testConfig.retries,
   /* Workers: use PLAYWRIGHT_WORKERS or fallback to CI sensible default. */
-  workers: typeof process.env.PLAYWRIGHT_WORKERS !== 'undefined' ? Number(process.env.PLAYWRIGHT_WORKERS) : (process.env.CI ? 1 : undefined),
+  workers: testConfig.workers,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
-  reporter: 'html',
+  reporter: [['html', { open: 'never' }]],
+  /* Keep failure artifacts in a dedicated folder for CI uploads. */
+  outputDir: 'test-results',
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Base URL to use in actions like `await page.goto('')`. */
-    baseURL: process.env.PLAYWRIGHT_BASE_URL || 'http://37.27.17.198:8084/cs/',
+    baseURL: testConfig.baseURL,
 
-    /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
-    trace: 'on-first-retry',
+    /* Retain traces, screenshots and videos for failed runs so CI can debug failures. */
+    trace: 'retain-on-failure',
+    screenshot: 'only-on-failure',
+    video: 'retain-on-failure',
   },
 
   /* Configure projects for major browsers */

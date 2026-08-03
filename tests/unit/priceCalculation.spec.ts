@@ -1,7 +1,8 @@
 import { test, expect } from '@playwright/test';
 import { calculateTotal } from '../../utils/price';
 
-test('price calculation with taxes and discounts', async () => {
+test('price calculation with taxes and discounts', async ({}, testInfo) => {
+  testInfo.annotations.push({ type: 'tag', description: 'unit' });
   const items = [
     { price: 10, qty: 2 },
     { price: 5, qty: 1 },
