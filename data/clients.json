@@ -1,0 +1,14 @@
+[
+  {
+    "id": 1,
+    "name": "Test Client",
+    "email": "qa+client@example.com",
+    "locale": "en"
+  },
+  {
+    "id": 2,
+    "name": "Another Client",
+    "email": "qa+client2@example.com",
+    "locale": "cs"
+  }
+]

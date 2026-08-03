@@ -1,0 +1,17 @@
+[
+  {
+    "sku": "SKU-001",
+    "name": "Classic T-Shirt",
+    "category": "Apparel"
+  },
+  {
+    "sku": "SKU-002",
+    "name": "Denim Jacket",
+    "category": "Outerwear"
+  },
+  {
+    "sku": "SKU-003",
+    "name": "Running Shoes",
+    "category": "Footwear"
+  }
+]

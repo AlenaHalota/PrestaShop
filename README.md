@@ -7,19 +7,51 @@ This repository contains the end-to-end (UI), API, and unit tests for the Presta
 ## 🛠 Prerequisites & Setup
 
 * **Node.js**: Ensure you have Node.js (v20 or higher) installed.
-* **Environment Variables**: `.env` for variables that can be shared and `env.local` for secrets that must not be part of the repository are only saved locally
-* **base URL**: The default base URL is set to http://37.27.17.198:8084/cs/ via playwright.config.ts.
-* **npm scripts**: scripts to run the tests are set up in package.json
+* **Dependencies**: Install the project dependencies with `npm install`.
+* **Browsers**: Install the Playwright browsers with `npx playwright install`.
+* **Environment files**: Create a `.env` file for shared values and a `.env.local` file for local/secret overrides. Both files are loaded automatically by Playwright.
+* **Base URL**: The default base URL is `http://37.27.17.198:8084/cs/` if no environment variable is provided.
+* **npm scripts**: Test commands are defined in `package.json`.
+
+### Environment variables
+
+The project uses the following variables:
+
+- `PLAYWRIGHT_BASE_URL` – base URL used by all tests. Default: `http://37.27.17.198:8084/cs/`
+- `PLAYWRIGHT_RETRIES` – number of retries for failed tests. Default: `0` locally, `2` in CI
+- `PLAYWRIGHT_WORKERS` – number of parallel workers. Default: `1` in CI, Playwright default locally
+- `EMAIL` – email used by the UI smoke-test login flow
+- `PASSWORD` – password used by the UI smoke-test login flow
+
+Example `.env` file:
+
+```env
+PLAYWRIGHT_BASE_URL=http://37.27.17.198:8084/cs/
+PLAYWRIGHT_RETRIES=0
+PLAYWRIGHT_WORKERS=1
+EMAIL=your@email.com
+PASSWORD=your-password
+```
+
+Use `.env.local` for machine-specific values such as local URLs or secrets. The smoke tests require valid `EMAIL` and `PASSWORD` values to run the login scenario.
 
 Notes:
 - Tests are added under `tests/api/..`, `tests/ui/..`, `tests/unit/...`.
 - Playwright artifacts (traces, screenshots, videos) configuration is in `playwright.config.ts`.
 
 # Installation
-npm init playwright@latest
 
-# playwright-cli
-npm install -g @playwright/cli
+```bash
+npm install
+npx playwright install
+```
+
+# Run tests
+
+```bash
+npm run test:smoke
+npm run test:regression
+```
 
 # project structure
 
