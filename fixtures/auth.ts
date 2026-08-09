@@ -16,7 +16,11 @@ export function createTestUser(prefix = 'qa'): TestUser {
 export async function clearTestState(page: Page) {
   await page.context().clearCookies();
   await page.evaluate(() => {
-    localStorage.clear();
-    sessionStorage.clear();
+        try {
+      localStorage.clear();
+      sessionStorage.clear();
+    } catch (e) {
+      // ignore if localStorage/sessionStorage is inaccessible (cross-origin/about:blank)
+    }
   });
 }
