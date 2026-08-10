@@ -14,7 +14,7 @@ test.describe('Smoke test', () => {
     testInfo.annotations.push({ type: 'tag', description: 'ui' });
     testInfo.annotations.push({ type: 'tag', description: 'prGate' });
   });
-  test.only('login successful', async ({ page, testUser }) => {
+  test('login successful', async ({ page, testUser }) => {
 
     const emailAddress = process.env.EMAIL || testUser.email;
     const password = process.env.PASSWORD || testUser.password;

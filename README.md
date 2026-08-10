@@ -18,22 +18,14 @@ This repository contains the end-to-end (UI), API, and unit tests for the Presta
 The project uses the following variables:
 
 - `PLAYWRIGHT_BASE_URL` – base URL used by all tests. Default: `http://37.27.17.198:8084/cs/`
-- `PLAYWRIGHT_RETRIES` – number of retries for failed tests. Default: `0` locally, `2` in CI
-- `PLAYWRIGHT_WORKERS` – number of parallel workers. Default: `1` in CI, Playwright default locally
-- `EMAIL` – email used by the UI smoke-test login flow
-- `PASSWORD` – password used by the UI smoke-test login flow
 
 Example `.env` file:
 
 ```env
 PLAYWRIGHT_BASE_URL=http://37.27.17.198:8084/cs/
-PLAYWRIGHT_RETRIES=0
-PLAYWRIGHT_WORKERS=1
-EMAIL=your@email.com
-PASSWORD=your-password
 ```
 
-Use `.env.local` for machine-specific values such as local URLs or secrets. The smoke tests require valid `EMAIL` and `PASSWORD` values to run the login scenario.
+Use `.env.local` for machine-specific values such as  secrets. The smoke tests require valid `EMAIL` and `PASSWORD` values to run the login scenario.
 
 Notes:
 - Tests are added under `tests/api/..`, `tests/ui/..`, `tests/unit/...`.
