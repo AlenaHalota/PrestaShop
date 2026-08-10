@@ -11,6 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
         PASSWORD: ${{ secrets.PASSWORD }}
+        EMAIL: ${{ secrets.EMAIL }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
