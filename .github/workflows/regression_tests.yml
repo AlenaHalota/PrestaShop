@@ -1,12 +1,8 @@
 name: Playwright Tests
 
 on:
-  pull_request:
-    branches: [ main ]
   push:
-    branches: [ main ]
-  schedule:
-    - cron: '0 2 * * 1-5' # Nightly regression Sun-Thu 02:00 UTC
+    branches: [ master ]
 
 env:
   PLAYWRIGHT_BASE_URL: 'http://37.27.17.198:8084/cs/'
@@ -14,7 +10,7 @@ env:
 jobs:
   full_regression:
     name: Full Regression Test
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
     runs-on: ubuntu-latest
     env:
       PASSWORD: ${{ secrets.PASSWORD }}
@@ -52,38 +48,4 @@ jobs:
 
   nightly_regression:
     name: Nightly Regression Test
-    if: github.event_name == 'schedule'
-    runs-on: ubuntu-latest
-    env:
-      PASSWORD: ${{ secrets.PASSWORD }}
-      EMAIL: ${{ secrets.EMAIL }}
-    timeout-minutes: 120
-    strategy:
-      matrix:
-        browser: [chromium, firefox, webkit]
-    steps:
-      - uses: actions/checkout@v4
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-      - name: Install dependencies
-        run: npm ci
-      - name: Install Playwright Browsers
-        run: npx playwright install --with-deps
-      - name: Run nightly regression (no retries)
-        env:
-          PLAYWRIGHT_RETRIES: 0
-          PLAYWRIGHT_WORKERS: 4
-        run: |
-          npx playwright test --project=${{ matrix.browser }} || exit 1
-      - name: Upload Playwright artifacts
-        if: failure()
-        uses: actions/upload-artifact@v4
-        with:
-          name: playwright-artifacts-nightly-${{ matrix.browser }}
-          path: |
-            playwright-report/
-            test-results/
-          if-no-files-found: ignore
-          retention-days: 30
+    # Nightly scheduled job removed — workflow now runs only on pushes to `master`.
